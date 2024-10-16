@@ -50,7 +50,7 @@ const Form = () => {
                 <br />
                 <input
                     placeholder="key"
-                    type="text"
+                    type="password"
                     id="key"
                     name="key"
                     value={key}
@@ -59,9 +59,9 @@ const Form = () => {
                     }
                 />
                 <br />
-                <button type="submit">{type}</button>
+                <button type="submit">{">"}</button>
             </form>
-            <h1>{output}</h1>
+            <h2>{output}</h2>
         </>
     );
 }

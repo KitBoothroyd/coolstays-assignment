@@ -13,6 +13,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #f6f64d;
+}
+
 html {
   background-color: #00bfa6;
 }
@@ -42,7 +46,11 @@ button {
   font-weight: bold;
   background-color: #2a6d5f;
   color: #00bfa6;
-  margin-top: 30px;
+  margin-top: 15px;
+}
+
+button:hover {
+  background-color: #f6f64d;
 }
 
 .App-logo {
