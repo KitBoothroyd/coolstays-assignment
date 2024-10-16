@@ -5,13 +5,12 @@ import Form from './pages/Form';
  
 const App = () => {
    return (
-      <>
-        <h1>Coolstays Coding Task</h1>
+      <div className="App">
          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:type" element={<Form />} />
          </Routes>
-      </>
+      </div>
    );
 }
 

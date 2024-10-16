@@ -1,5 +1,48 @@
 .App {
+  margin-top: 200px;
   text-align: center;
+}
+
+body {
+  color: #2a6d5f;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+  color: #2a6d5f;
+  text-decoration: none;
+}
+
+html {
+  background-color: #00bfa6;
+}
+
+input {
+  border: transparent;
+  background: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #2a6d5f;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+.m-r-50 {
+  margin-right: 50px;
+}
+
+button {
+  border: transparent;
+  background: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  background-color: #2a6d5f;
+  color: #00bfa6;
+  margin-top: 30px;
 }
 
 .App-logo {

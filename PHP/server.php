@@ -17,7 +17,7 @@
         return true;
     }
 
-    function findNthPrime($n) {
+    function nthPrime($n) {
         $count = 0;
         $current = 1;
 
@@ -31,8 +31,17 @@
         return $current;
     }
 
-    function convertToValidAsciiCode($n) {
+    function normAscii($n) {
         return (($n - 32) % (126 - 32 + 1)) + 32;
+    }
+
+    function encryptChar($d, $k, $i) {
+        $e = chr(normAscii(nthPrime($i + ord($k)) + $i + ord($d)));
+        return $e;
+    }
+
+    function decryptChar($e, $k, $i) {
+        $d = ord($e) - normAscii(nthPrime($i + ord($k)) + $i);
     }
 
     function encrypt($stringToEncrypt, $encryptionKey) {
@@ -41,27 +50,23 @@
 
         $encryptedChars = array();
         for ($i = 0; $i < count($inputChars); $i++) {
-            $n = $i + ord($keyChars[$i % count($keyChars)]);
-            $nthPrime = findNthPrime($n);
-
+            $k = $keyChars[$i % count($keyChars)];
             $encryptedChars[$i] = 
-                chr(convertToValidAsciiCode($nthPrime + $i + ord($inputChars[$i])));
+                encryptChar($inputChars[$i], $k, $i);
         }
 
         return implode($encryptedChars);
     }
 
-    function decrypt($stringToDecrypt, $decryptionKey) {
-        $inputChars = str_split($stringToDecrypt);
-        $keyChars = str_split($decryptionKey);
+    function decrypt($stringToEncrypt, $encryptionKey) {
+        $inputChars = str_split($stringToEncrypt);
+        $keyChars = str_split($encryptionKey);
 
         $encryptedChars = array();
         for ($i = 0; $i < count($inputChars); $i++) {
-            $n = $i + ord($keyChars[$i % count($keyChars)]);
-            $nthPrime = findNthPrime($n);
-
+            $k = $keyChars[$i % count($keyChars)];
             $encryptedChars[$i] = 
-                chr(convertToValidAsciiCode($nthPrime + $i + ord($inputChars[$i])));
+                decryptChar($inputChars[$i], $k, $i);
         }
 
         return implode($encryptedChars);

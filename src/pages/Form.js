@@ -30,15 +30,14 @@ const Form = () => {
     };
 
     return (
-        <div className="App">
-            <h1>{type}</h1>
+        <>
             <form
                 action="http://localhost:8000/server.php"
                 method="post"
                 onSubmit={(event) => handleSubmit(event)}
             >
-                <label htmlFor="input">Input: </label>
                 <input
+                    placeholder="input"
                     type="text"
                     id="input"
                     name="input"
@@ -46,10 +45,11 @@ const Form = () => {
                     onChange={(event) =>
                         handleInputChange(event)
                     }
+                    autoFocus
                 />
                 <br />
-                <label htmlFor="key">Key: </label>
                 <input
+                    placeholder="key"
                     type="text"
                     id="key"
                     name="key"
@@ -62,7 +62,7 @@ const Form = () => {
                 <button type="submit">{type}</button>
             </form>
             <h1>{output}</h1>
-        </div>
+        </>
     );
 }
 

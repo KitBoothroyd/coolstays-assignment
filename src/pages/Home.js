@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
-        <>
-            <Link to="/encrypt">Encrypt</Link>
-            <Link to="/decrypt">Decrypt</Link>
-        </>
+        <div>
+            <Link to="/encrypt" className="m-r-50"><b>ENCRYPT</b></Link>
+            <Link to="/decrypt"><b>DECRYPT</b></Link>
+        </div>
     );
 }
 
