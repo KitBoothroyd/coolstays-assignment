@@ -31,8 +31,12 @@
         return $current;
     }
 
+    function modulo($num, $mod) {
+        return ($mod + ($num % $mod)) % $mod;
+    }
+
     function normAscii($n) {
-        return (($n - 32) % (126 - 32 + 1)) + 32;
+        return modulo($n - 32, 126 - 32 + 1) + 32;
     }
 
     function encryptChar($d, $k, $i) {
@@ -41,7 +45,8 @@
     }
 
     function decryptChar($e, $k, $i) {
-        $d = ord($e) - normAscii(nthPrime($i + ord($k)) + $i);
+        $d = chr(normAscii(ord($e) - nthPrime($i + ord($k)) - $i));
+        return $d;
     }
 
     function encrypt($stringToEncrypt, $encryptionKey) {
@@ -72,5 +77,8 @@
         return implode($encryptedChars);
     }
 
-    echo encrypt($input, $key);
+    // echo encrypt($input, $key);
+    echo decrypt($input, $key);
+    echo "         ";
+    echo encrypt(decrypt($input, $key), $key);
 ?>
