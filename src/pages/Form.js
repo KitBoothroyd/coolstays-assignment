@@ -68,7 +68,7 @@ const Form = () => {
                 <button type="submit">{">"}</button>
                 </div>
             </form>
-            <h2>{output}</h2>
+            <span className="output">{output}</span>
         </>
     );
 }
