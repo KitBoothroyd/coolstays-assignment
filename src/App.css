@@ -58,6 +58,10 @@ select {
   margin-right: 10px;
 }
 
+select:hover {
+  background-color: #f6f64d;
+}
+
 .dropdown-container select {
   -moz-appearance: none;
   -webkit-appearance: none;

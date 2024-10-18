@@ -2,6 +2,7 @@
     header('Access-Control-Allow-Origin: http://localhost:3000');
     $input = $_POST['input'];
     $key = $_POST['key'];
+    $type = $_POST['type'];
 
     function isPrime($n) {
         if ($n < 2) {
@@ -49,36 +50,21 @@
         return $d;
     }
 
-    function encrypt($stringToEncrypt, $encryptionKey) {
-        $inputChars = str_split($stringToEncrypt);
-        $keyChars = str_split($encryptionKey);
+    function process($input, $key, $type) {
+        $inputChars = str_split($input);
+        $keyChars = str_split($key);
 
-        $encryptedChars = array();
+        $outputChars = array();
         for ($i = 0; $i < count($inputChars); $i++) {
             $k = $keyChars[$i % count($keyChars)];
-            $encryptedChars[$i] = 
-                encryptChar($inputChars[$i], $k, $i);
+            $outputChars[$i] = 
+                $type == "encrypt" 
+                ? encryptChar($inputChars[$i], $k, $i) 
+                : decryptChar($inputChars[$i], $k, $i);
         }
 
-        return implode($encryptedChars);
+        return implode($outputChars);
     }
 
-    function decrypt($stringToEncrypt, $encryptionKey) {
-        $inputChars = str_split($stringToEncrypt);
-        $keyChars = str_split($encryptionKey);
-
-        $encryptedChars = array();
-        for ($i = 0; $i < count($inputChars); $i++) {
-            $k = $keyChars[$i % count($keyChars)];
-            $encryptedChars[$i] = 
-                decryptChar($inputChars[$i], $k, $i);
-        }
-
-        return implode($encryptedChars);
-    }
-
-    // echo encrypt($input, $key);
-    echo decrypt($input, $key);
-    echo "         ";
-    echo encrypt(decrypt($input, $key), $key);
+    echo process($input, $key, $type);
 ?>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import $ from "jquery";
 import { useParams } from 'react-router-dom';
+import React from "react";
 
 const Form = () => {
     const { type } = useParams();
