@@ -59,7 +59,13 @@ const Form = () => {
                     }
                 />
                 <br />
+                <div className="dropdown-container">
+                    <select name="type" id="type">
+                        <option>encrypt</option>
+                        <option>decrypt</option>
+                    </select>
                 <button type="submit">{">"}</button>
+                </div>
             </form>
             <h2>{output}</h2>
         </>
