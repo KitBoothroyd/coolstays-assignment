@@ -1,93 +1,95 @@
 import { useState } from "react";
 import $ from "jquery";
-import { useParams } from 'react-router-dom';
 import React from "react";
+import Output from "shared/Output";
 
 const Home = () => {
-    const [input, setInput] = useState("");
-    const [key, setKey] = useState("");
-    const [output, setOutput] = useState("");
-    const [errors, setErrors] = useState([]);
+  const [input, setInput] = useState("");
+  const [key, setKey] = useState("");
+  const [result, setResult] = useState("");
+  const [errors, setErrors] = useState({});
 
-    const handleInputChange = (e) => {   
-        setInput(e.target.value);
-    };
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    handleErrors();
+  };
 
-    const handleKeyChange = (e) => {
-        setKey(e.target.value);
-    };
+  const handleKeyChange = (e) => {
+    setKey(e.target.value);
+    handleErrors();
+  };
 
-    const handleSubmit = (e) => {
-        setErrors([]);
-        let newErrors = [];
+  const handleErrors = () => {
+    setErrors({});
+    let newErrors = {};
 
-        if (!input) {
-            newErrors.push("x Enter an input");
-        }
-        
-        if (!key) {
-            newErrors.push("x Enter a key");
-        }
+    if (!input) {
+      newErrors["input"] = "Enter an input";
+    }
+    if (!key) {
+      newErrors["key"] = "Enter an key";
+    }
 
-        setErrors(newErrors);
+    setErrors(newErrors);
 
-        e.preventDefault();
-        const form = $(e.target);
+    return Boolean(!newErrors.length);
+  };
 
-        if (!newErrors.length) {
-            $.ajax({
-                type: "POST",
-                url: form.attr("action"),
-                data: form.serialize(),
-                success(data) {
-                    setOutput(data);
-                },
-            });
-        }
-    };
+  const handleSubmit = (e) => {
+    const canProceed = handleErrors();
 
-    return (
-        <>
-            <form
-                action="http://localhost:8000/server.php"
-                method="post"
-                onSubmit={(event) => handleSubmit(event)}
-            >
-                <input
-                    placeholder="input"
-                    type="text"
-                    id="input"
-                    name="input"
-                    value={input}
-                    onChange={(event) =>
-                        handleInputChange(event)
-                    }
-                    autoFocus
-                />
-                <br />
-                <input
-                    placeholder="key"
-                    type="password"
-                    id="key"
-                    name="key"
-                    value={key}
-                    onChange={(event) =>
-                        handleKeyChange(event)
-                    }
-                />
-                <br />
-                <div className="dropdown-container">
-                    <select name="type" id="type">
-                        <option>encrypt</option>
-                        <option>decrypt</option>
-                    </select>
-                <button type="submit">{">"}</button>
-                </div>
-                <div>{errors}</div>
-            </form>
-            <span className="output">{output}</span>
-        </>
-    );
-}
+    e.preventDefault();
+    const form = $(e.target);
+
+    canProceed &&
+      $.ajax({
+        type: "POST",
+        url: form.attr("action"),
+        data: form.serialize(),
+        success(data) {
+          setResult(data);
+        },
+      });
+  };
+
+  return (
+    <>
+      <form
+        action="http://localhost:8000/server.php"
+        method="post"
+        onSubmit={(event) => handleSubmit(event)}
+      >
+        <input
+          placeholder="input"
+          type="text"
+          id="input"
+          name="input"
+          value={input}
+          onChange={(event) => handleInputChange(event)}
+          autoFocus
+        />
+        <br />
+        <input
+          placeholder="key"
+          type="password"
+          id="key"
+          name="key"
+          value={key}
+          onChange={(event) => handleKeyChange(event)}
+        />
+        <br />
+        <div className="dropdown-container">
+          <select name="type" id="type">
+            <option>encrypt</option>
+            <option>decrypt</option>
+          </select>
+          <button type="submit">{">"}</button>
+        </div>
+      </form>
+
+      <Output errors={errors} result={result} />
+    </>
+  );
+};
 
 export default Home;
