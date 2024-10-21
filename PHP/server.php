@@ -32,10 +32,12 @@
         return $current;
     }
 
+    //in place of php % function which handles negative values in a different way to true mathematical modulo
     function modulo($num, $mod) {
         return ($mod + ($num % $mod)) % $mod;
     }
 
+    // normalises an integer into the valid ascii range 32-126
     function normAscii($n) {
         return modulo($n - 32, 126 - 32 + 1) + 32;
     }

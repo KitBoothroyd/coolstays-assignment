@@ -1,7 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Form from './pages/Form';
+import Form from './pages/Home';
 import React from 'react';
  
 const App = () => {
@@ -13,6 +12,5 @@ const App = () => {
       </div>
    );
 }
-
 
 export default App;
