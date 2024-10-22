@@ -10,12 +10,10 @@ const Home = () => {
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
-    // handleErrors();
     setInput(e.target.value);
   };
 
   const handleKeyChange = (e) => {
-    // handleErrors();
     setKey(e.target.value);
   };
 

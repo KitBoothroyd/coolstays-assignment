@@ -5,7 +5,7 @@ const Output = (props) => {
   const result = props.result;
 
   return errors.length ? (
-    <div className="output errors">
+    <div className="errors">
       <ul>
         {errors.map((error) => (
           <li>{error}</li>
