@@ -5,11 +5,13 @@ const Output = (props) => {
   const result = props.result;
 
   return errors.length ? (
-    <ul>
-      {errors.map((error) => (
-        <li>{error}</li>
-      ))}
-    </ul>
+    <div className="output errors">
+      <ul>
+        {errors.map((error) => (
+          <li>{error}</li>
+        ))}
+      </ul>
+    </div>
   ) : (
     <span className="output">{result}</span>
   );

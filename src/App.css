@@ -36,10 +36,6 @@ input:focus {
   border: none;
 }
 
-.m-r-50 {
-  margin-right: 50px;
-}
-
 button {
   border: transparent;
   background: transparent;
@@ -80,4 +76,12 @@ button:hover {
 .output {
   display: inline-block;
   margin-top: 200px;
+}
+
+.errors {
+  color: #f6f64d;
+}
+
+ul {
+  list-style-type: none;
 }

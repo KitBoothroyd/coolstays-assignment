@@ -10,13 +10,13 @@ const Home = () => {
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
+    // handleErrors();
     setInput(e.target.value);
-    handleErrors();
   };
 
   const handleKeyChange = (e) => {
+    // handleErrors();
     setKey(e.target.value);
-    handleErrors();
   };
 
   const handleErrors = () => {
@@ -24,15 +24,15 @@ const Home = () => {
     let newErrors = {};
 
     if (!input) {
-      newErrors["input"] = "Enter an input";
+      newErrors["input"] = "enter an input";
     }
     if (!key) {
-      newErrors["key"] = "Enter an key";
+      newErrors["key"] = "enter a key";
     }
 
     setErrors(newErrors);
 
-    return Boolean(!newErrors.length);
+    return Boolean(Object.entries(newErrors).length === 0);
   };
 
   const handleSubmit = (e) => {
