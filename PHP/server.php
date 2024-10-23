@@ -1,5 +1,7 @@
 <?php
+    //allow requests from the react frontend
     header('Access-Control-Allow-Origin: http://localhost:3000');
+    
     $input = $_POST['input'];
     $key = $_POST['key'];
     $type = $_POST['type'];
@@ -9,7 +11,7 @@
             return false;
         }
 
-        for ($i = 2; $i < intval($n**0.5) + 1; $i++) {
+        for ($i = 2; $i < ceil($n**0.5) + 1; $i++) {
             if ($n % $i == 0) {
                 return false;
             }

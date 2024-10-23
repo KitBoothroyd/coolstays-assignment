@@ -36,7 +36,9 @@ const Home = () => {
   const handleSubmit = (e) => {
     const canProceed = handleErrors();
 
+    //prevent browser navigation to http://localhost:8000/server.php
     e.preventDefault();
+    
     const form = $(e.target);
 
     canProceed &&
